@@ -17,12 +17,21 @@ function run_ui()
   ng serve
 }
 
+function install_ui_deps()
+{
+  cd ${ui_dir}
+  yarn install
+}
+
 case "$1" in
   api)
     run_api
     ;;
   ui)
     run_ui
+    ;;
+  deps)
+    install_ui_deps
     ;;
   *)
     echo Improper Command

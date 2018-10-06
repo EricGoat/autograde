@@ -1,6 +1,24 @@
 from flask import Flask, jsonify
 app = Flask(__name__)
-test_data = {'ok': True, 'data': ['thing1', 'thing2']}
+
+tasks = [
+    {
+        'id': 1,
+        'description': 'Walk Dogs'
+    },
+    {
+        'id': 2,
+        'description': 'Feed Cats'
+    }
+]
+
+test_data = {'ok': True, 'data': tasks}
+
+
+@app.after_request
+def add_headers(resp):
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    return resp
 
 
 @app.route("/")
